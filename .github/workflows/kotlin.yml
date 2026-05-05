@@ -1,0 +1,63 @@
+name: Run Kotlin Scripts
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 1.balance
+        continue-on-error: true
+        run: kotlinc -script kotlin/1.balance.main.kts
+
+      - name: 2.blockinfo
+        continue-on-error: true
+        run: kotlinc -script kotlin/2.blockinfo.main.kts
+
+      - name: 3.getaddress
+        continue-on-error: true
+        run: kotlinc -script kotlin/3.getaddress.main.kts
+
+      - name: 4.opreturn
+        continue-on-error: true
+        run: kotlinc -script kotlin/4.opreturn.main.kts
+
+      - name: 5.listunspentutxo
+        continue-on-error: true
+        run: kotlinc -script kotlin/5.listunspentutxo.main.kts
+
+      - name: 6.descriptor-from-mnemonic
+        continue-on-error: true
+        run: kotlinc -script kotlin/6.descriptor-from-mnemonic.main.kts
+
+      - name: 7.public-descriptor-template
+        continue-on-error: true
+        run: kotlinc -script kotlin/7.public-descriptor-template.main.kts
+
+      - name: 8.transaction-details
+        continue-on-error: true
+        run: kotlinc -script kotlin/8.transaction-details.main.kts
+
+      - name: 9.private-descriptor-template
+        continue-on-error: true
+        run: kotlinc -script kotlin/9.private-descriptor-template.main.kts
+
+      - name: 10.create-tx-from-raw-bytes
+        continue-on-error: true
+        run: kotlinc -script kotlin/10.create-tx-from-raw-bytes.main.kts
+
+      - name: 11.derive-custom-path
+        continue-on-error: true
+        run: kotlinc -script kotlin/11.derive-custom-path.main.kts
+
+      - name: 12.basic-transaction
+        continue-on-error: true
+        run: kotlinc -script kotlin/12.basic-transaction.main.kts
