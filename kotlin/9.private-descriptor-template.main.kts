@@ -21,7 +21,7 @@ val descriptorSecretKey: DescriptorSecretKey = DescriptorSecretKey.fromString(
 val descriptor = Descriptor.newBip84(
     secretKey = descriptorSecretKey,
     keychain = KeychainKind.EXTERNAL,
-    network = Network.TESTNET
+    network = Network.REGTEST
 )
 
 println("The descriptor is ${descriptor.asStringPrivate()}")

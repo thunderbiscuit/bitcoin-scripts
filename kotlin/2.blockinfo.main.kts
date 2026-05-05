@@ -12,8 +12,7 @@ val memoryDatabaseConfig = DatabaseConfig.Memory
 
 val blockchainConfig = BlockchainConfig.Electrum(
     ElectrumConfig(
-        // url = "ssl://electrum.blockstream.info:50002", // mainnet
-        url = "ssl://electrum.blockstream.info:60002",    // testnet
+        url = "tcp://127.0.0.1:60401",
         socks5 = null,
         retry = 5u,
         timeout = null,

@@ -10,15 +10,15 @@ import org.bitcoindevkit.*
 
 val descriptor: Descriptor = Descriptor(
     descriptor = "wpkh(tprv8ZgxMBicQKsPf2qfrEygW6fdYseJDDrVnDv26PH5BHdvSuG6ecCbHqLVof9yZcMoM31z9ur3tTYbSnr1WBqbGX97CbXcmp5H6qeMpyvx35B/84h/1h/0h/0/*)",
-    network = Network.TESTNET
+    network = Network.REGTEST
 )
 
-val electrumUrl = "ssl://electrum.blockstream.info:60002"
-val blockchainConfig = BlockchainConfig.Electrum(ElectrumConfig(electrumUrl, null, 5u, null, 100u, true))
+val electrumUrl = "tcp://127.0.0.1:60401"
+val blockchainConfig = BlockchainConfig.Electrum(ElectrumConfig(electrumUrl, null, 5u, null, 100u, false))
 val blockchain = Blockchain(blockchainConfig)
 val databaseConfig = DatabaseConfig.Memory
 
-val wallet = Wallet(descriptor, null, Network.TESTNET, databaseConfig)
+val wallet = Wallet(descriptor, null, Network.REGTEST, databaseConfig)
 
 wallet.sync(blockchain, null)
 

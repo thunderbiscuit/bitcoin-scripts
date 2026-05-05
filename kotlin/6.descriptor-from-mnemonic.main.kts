@@ -10,7 +10,7 @@ import org.bitcoindevkit.*
 
 val mnemonic: Mnemonic = Mnemonic.fromString("fire alter tide over object advance diamond pond region select tone pole")
 val bip32RootKey: DescriptorSecretKey = DescriptorSecretKey(
-    network = Network.TESTNET,
+    network = Network.REGTEST,
     mnemonic = mnemonic,
     password = ""
 )

@@ -21,7 +21,7 @@ val descriptor = Descriptor.newBip84Public(
     publicKey = descriptorPublicKey,
     fingerprint = "9122d9e0",
     keychain = KeychainKind.EXTERNAL,
-    network = Network.TESTNET
+    network = Network.REGTEST
 )
 
 println("The descriptor is ${descriptor.asString()}")
