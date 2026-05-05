@@ -9,55 +9,78 @@ on:
 
 jobs:
   run-scripts:
+    name: "Run all Kotlin scripts"
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - name: "Checkout PR branch"
+        uses: actions/checkout@v4
 
-      - name: 1.balance
+      - name: "Script 1"
+        id: s1
         continue-on-error: true
         run: kotlinc -script kotlin/1.balance.main.kts
 
-      - name: 2.blockinfo
+      - name: "Script 2"
+        id: s2
         continue-on-error: true
         run: kotlinc -script kotlin/2.blockinfo.main.kts
 
-      - name: 3.getaddress
+      - name: "Script 3"
+        id: s3
         continue-on-error: true
         run: kotlinc -script kotlin/3.getaddress.main.kts
 
-      - name: 4.opreturn
+      - name: "Script 4"
+        id: s4
         continue-on-error: true
         run: kotlinc -script kotlin/4.opreturn.main.kts
 
-      - name: 5.listunspentutxo
+      - name: "Script 5"
+        id: s5
         continue-on-error: true
         run: kotlinc -script kotlin/5.listunspentutxo.main.kts
 
-      - name: 6.descriptor-from-mnemonic
+      - name: "Script 6"
+        id: s6
         continue-on-error: true
         run: kotlinc -script kotlin/6.descriptor-from-mnemonic.main.kts
 
-      - name: 7.public-descriptor-template
+      - name: "Script 7"
+        id: s7
         continue-on-error: true
         run: kotlinc -script kotlin/7.public-descriptor-template.main.kts
 
-      - name: 8.transaction-details
+      - name: "Script 8"
+        id: s8
         continue-on-error: true
         run: kotlinc -script kotlin/8.transaction-details.main.kts
 
-      - name: 9.private-descriptor-template
+      - name: "Script 9"
+        id: s9
         continue-on-error: true
         run: kotlinc -script kotlin/9.private-descriptor-template.main.kts
 
-      - name: 10.create-tx-from-raw-bytes
+      - name: "Script 10"
+        id: s10
         continue-on-error: true
         run: kotlinc -script kotlin/10.create-tx-from-raw-bytes.main.kts
 
-      - name: 11.derive-custom-path
+      - name: "Script 11"
+        id: s11
         continue-on-error: true
         run: kotlinc -script kotlin/11.derive-custom-path.main.kts
 
-      - name: 12.basic-transaction
+      - name: "Script 12"
+        id: s12
         continue-on-error: true
         run: kotlinc -script kotlin/12.basic-transaction.main.kts
+
+      - name: "Fail if any script failed"
+        if: always()
+        run: |
+          outcomes="${{ steps.s1.outcome }} ${{ steps.s2.outcome }} ${{ steps.s3.outcome }} ${{ steps.s4.outcome }} ${{ steps.s5.outcome }} ${{ steps.s6.outcome }} ${{ steps.s7.outcome }} ${{ steps.s8.outcome }} ${{ steps.s9.outcome }} ${{ steps.s10.outcome }} ${{ steps.s11.outcome }} ${{ steps.s12.outcome }}"
+          if echo "$outcomes" | grep -q "failure"; then
+            echo "One or more scripts failed."
+            exit 1
+          fi
