@@ -1,10 +1,8 @@
-/**
- * bdk-jvm 2.3.1
- *
+/*
  * Get an unused address from a wallet.
  */
 
-@file:DependsOn("org.bitcoindevkit:bdk-jvm:2.3.1")
+@file:DependsOn("org.bitcoindevkit:bdk-jvm:2.3.0")
 
 import org.bitcoindevkit.Descriptor
 import org.bitcoindevkit.Wallet

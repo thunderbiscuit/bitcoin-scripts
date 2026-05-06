@@ -1,10 +1,8 @@
-/**
- * bdk-jvm 2.3.1
- *
+/*
  * Query an Electrum server for the total balance of a wallet using a descriptor.
  */
 
-@file:DependsOn("org.bitcoindevkit:bdk-jvm:2.3.1")
+@file:DependsOn("org.bitcoindevkit:bdk-jvm:2.3.0")
 
 import org.bitcoindevkit.Descriptor
 import org.bitcoindevkit.Wallet
