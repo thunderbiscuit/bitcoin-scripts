@@ -1,12 +1,12 @@
 /**
- * bdk-jvm 0.29.2
+ * bdk-jvm 0.32.1
  *
  * Create a Transaction object from raw bytes.
  */
 
 @file:Repository("https://repo.maven.apache.org/maven2/")
 @file:DependsOn("com.google.guava:guava:31.1-jre")
-@file:DependsOn("org.bitcoindevkit:bdk-jvm:0.29.2")
+@file:DependsOn("org.bitcoindevkit:bdk-jvm:0.32.1")
 
 import org.bitcoindevkit.*
 import com.google.common.io.BaseEncoding

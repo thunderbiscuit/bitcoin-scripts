@@ -1,10 +1,10 @@
 /**
- * bdk-jvm 0.29.2
+ * bdk-jvm 0.32.1
  *
  * List the unspent outputs this wallet controls.
  */
 
-@file:DependsOn("org.bitcoindevkit:bdk-jvm:0.29.2")
+@file:DependsOn("org.bitcoindevkit:bdk-jvm:0.32.1")
 
 import org.bitcoindevkit.*
 
