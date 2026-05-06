@@ -16,3 +16,12 @@ run-kotlin:
         echo "Running → $script"; \
         kotlinc -script "$script"; \
     done
+
+[group("Running the Scripts")]
+[doc("Run all Python scripts")]
+run-python:
+    for script in $(find python -name "*.py" | sort); do \
+        echo ""; \
+        echo "Running → $script"; \
+        uv run "$script"; \
+    done
