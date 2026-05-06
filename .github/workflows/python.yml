@@ -1,0 +1,47 @@
+name: Run Python Scripts
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  run-scripts:
+    name: "Run all Python scripts"
+    runs-on: ubuntu-24.04
+
+    services:
+      bitcoin-regtest:
+        image: ghcr.io/thunderbiscuit/podman-regtest-infinity-pro:0.3.2
+        ports:
+          - 18443:18443
+          - 18444:18444
+          - 3002:3002
+          - 3003:3003
+          - 60401:60401
+        options: >-
+          --health-cmd "test $(bitcoin-cli -regtest -rpcuser=regtest -rpcpassword=password getblockcount) -gt 0"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 6
+
+    steps:
+      - name: "Checkout PR branch"
+        uses: actions/checkout@v4
+
+      - name: "Install uv"
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: "Run all Python scripts"
+        run: |
+          failed=0
+          for script in $(find python -name "*.py" | sort); do
+            echo "::group::$script"
+            uv run "$script" || failed=1
+            echo "::endgroup::"
+          done
+          exit $failed
