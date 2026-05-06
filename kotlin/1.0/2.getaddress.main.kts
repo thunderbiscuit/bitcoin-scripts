@@ -1,7 +1,7 @@
 /**
  * bdk-jvm 1.2.0
  *
- * Query an Electrum server for the total balance of a wallet using a descriptor.
+ * Get an unused address from a wallet.
  */
 
 @file:DependsOn("org.bitcoindevkit:bdk-jvm:1.2.0")
@@ -12,6 +12,7 @@ import org.bitcoindevkit.ElectrumClient
 import org.bitcoindevkit.FullScanRequest
 import org.bitcoindevkit.Network
 import org.bitcoindevkit.KeychainKind
+import org.bitcoindevkit.AddressInfo
 import org.bitcoindevkit.Connection
 
 val descriptor = Descriptor("wpkh(tprv8ZgxMBicQKsPf2qfrEygW6fdYseJDDrVnDv26PH5BHdvSuG6ecCbHqLVof9yZcMoM31z9ur3tTYbSnr1WBqbGX97CbXcmp5H6qeMpyvx35B/84h/1h/0h/0/*)", Network.REGTEST)
@@ -24,8 +25,5 @@ val fullScanRequest: FullScanRequest = wallet.startFullScan().build()
 val update = electrumClient.fullScan(fullScanRequest, 10uL, 10uL, false)
 wallet.applyUpdate(update)
 
-val balanceSatoshi = wallet.balance().total.toSat()
-println("Balance: $balanceSatoshi satoshi")
-
-val address = wallet.revealNextAddress(KeychainKind.EXTERNAL)
-println(address.address)
+val lastUnusedAddress: AddressInfo = wallet.revealNextAddress(KeychainKind.EXTERNAL)
+println("The last unused address for this wallet is ${lastUnusedAddress.address} at index ${lastUnusedAddress.index}")
