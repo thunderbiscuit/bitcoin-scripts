@@ -1,19 +1,18 @@
 #!/usr/bin/swift sh
 
-import BitcoinDevKit  // https://github.com/bitcoindevkit/bdk-swift.git == 0.29.0
+import BitcoinDevKit  // https://github.com/bitcoindevkit/bdk-swift.git == 0.32.1
 
 let db = DatabaseConfig.memory
 
 do {
     let blockchainConfig = BlockchainConfig.electrum(
         config: ElectrumConfig(
-            // url: "ssl://electrum.blockstream.info:50002",
-            url: "ssl://electrum.blockstream.info:60002",
+            url: "tcp://127.0.0.1:60401",
             socks5: nil,
             retry: 5,
             timeout: nil,
             stopGap: 10,
-            validateDomain: true
+            validateDomain: false
         )
     )
     

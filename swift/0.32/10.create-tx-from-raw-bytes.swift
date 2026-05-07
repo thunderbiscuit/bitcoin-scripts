@@ -1,6 +1,6 @@
 #!/usr/bin/swift sh
 
-import BitcoinDevKit  // https://github.com/bitcoindevkit/bdk-swift.git == 0.29.0
+import BitcoinDevKit  // https://github.com/bitcoindevkit/bdk-swift.git == 0.32.1
 
 /*
  * Create a Transaction object from raw bytes.

@@ -1,6 +1,6 @@
 #!/usr/bin/swift sh
 
-import BitcoinDevKit  // https://github.com/bitcoindevkit/bdk-swift.git == 0.29.0
+import BitcoinDevKit  // https://github.com/bitcoindevkit/bdk-swift.git == 0.32.1
 
 do {
     // {
@@ -16,7 +16,7 @@ do {
         publicKey: descriptorPublicKey,
         fingerprint: "9122d9e0",
         keychain: .external,
-        network: .testnet
+        network: .regtest
     )
 
     print("The descriptor is \(descriptor.asString())")

@@ -25,3 +25,12 @@ run-python:
         echo "Running → $script"; \
         uv run "$script"; \
     done
+
+[group("Running the Scripts")]
+[doc("Run all Swift scripts")]
+run-swift:
+    for script in $(find swift -name "*.swift" | sort); do \
+        echo ""; \
+        echo "Running → $script"; \
+        swift sh "$script"; \
+    done
